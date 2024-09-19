@@ -12,3 +12,7 @@ div{
     flex-direction: row;
     float: left;
 }
+
+ul li{
+    list-style-type: none;
+}

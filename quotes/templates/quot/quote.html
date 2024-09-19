@@ -5,7 +5,14 @@
     </head>
 
     <body>
-        
+        <nav>
+            <ul>
+                <li> <a href="{% url 'base' %}"> base page : Home </a> </li> 
+                <li>  </li> <a href="{% url 'about' %}"> about page  </a>
+                <li>  </li><a href="{% url 'quote' %}"> quote </a>
+                <li>  </li><a href="{% url 'show_all' %}"> show _ all </a>
+            </ul>
+        </nav>
        <h1>"{{quote}}  " </h1> 
         <img src={{image}} width="500px" height="500px">
     </body>

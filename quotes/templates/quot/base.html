@@ -1,10 +1,19 @@
+{%load static%}
 <html>
 
     <head>
-        <link rel="stylesheet" href="/static/first.css">
+        <link rel="stylesheet" href="{%static 'first.css'%}">
     </head>
 
     <body>
+        <nav>
+            <ul>
+                <li> <a href="{% url 'base' %}"> base page : Home </a> </li> 
+                <li>  </li> <a href="{% url 'about' %}"> about page  </a>
+                <li>  </li><a href="{% url 'quote' %}"> quote </a>
+                <li>  </li><a href="{% url 'show_all' %}"> show _ all </a>
+            </ul>
+        </nav>
         <h1>this is the base page</h1>
         <h2>{{quote}}</h2> 
         <img src={{image}} width="500px" height="500px">

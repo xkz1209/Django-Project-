@@ -5,9 +5,19 @@
     </head>
 
     <body>
+        <nav>
+            <ul>
+                <li> <a href="{% url 'base' %}"> base page : Home </a> </li> 
+                <li>  </li> <a href="{% url 'about' %}"> about page  </a>
+                <li>  </li><a href="{% url 'quote' %}"> quote </a>
+                <li>  </li><a href="{% url 'show_all' %}"> show _ all </a>
+            </ul>
+        </nav>
         <h2>Author: I am Kaizhe Xu, you can call me Jimmy!</h2>
-        <h3>below is the intro to all 3 people of the quotes</h3>
+        <h3>below is the intro to the people of the quotes</h3>
+        
       <div>
+        <h1>About:</h1>
         {{person}}
        </div> 
     </body>
