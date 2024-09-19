@@ -8,7 +8,9 @@ quoteList = ['What can I say, Mamba Out!', 'I am the chosen one', 'you must firs
 imgList = [ '/static/kobe.jpg', '/static/lbj.jpg', '/static/mj.jpg']
 personList = ['This is Kobe from LA Lakers', 'This is LBJ the king from LA Lakers', 'Michal Jordan from Bulls, the greatest ever']
 
+
 def base(request):
+    global num
     num = random.randint(0,2)
     template_name = "quot/base.html"
     # create a dictionary of context variables
@@ -20,7 +22,6 @@ def base(request):
 
 
 def quote(request):
-    num = random.randint(0,2)
     template_name = "quot/quote.html"
     # create a dictionary of context variables
     context = {
@@ -44,8 +45,6 @@ def about(request):
     template_name = "quot/about.html"
     # create a dictionary of context variables
     context = {
-        'Kobe': personList[0],
-        'Lbj' : personList[1],
-        'MJ'  : personList[2],
+        'person': personList[num],
     }
     return render(request, template_name, context)
