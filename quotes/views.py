@@ -22,6 +22,7 @@ def base(request):
 
 
 def quote(request):
+    global num
     template_name = "quot/quote.html"
     # create a dictionary of context variables
     context = {
@@ -31,7 +32,6 @@ def quote(request):
     return render(request, template_name, context)
 
 def show_all(request):
-    
     template_name = "quot/show_all.html"
     # create a dictionary of context variables
     context = {
@@ -41,7 +41,7 @@ def show_all(request):
     return render(request, template_name, context)
 
 def about(request):
-    
+    global num
     template_name = "quot/about.html"
     # create a dictionary of context variables
     context = {
