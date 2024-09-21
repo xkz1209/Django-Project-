@@ -6,7 +6,7 @@ import random
 # Create your views here.
 quoteList = ['What can I say, Mamba Out!', 'I am the chosen one', 'you must first learn to fail']
 imgList = [ '/static/kobe.jpg', '/static/lbj.jpg', '/static/mj.jpg']
-personList = ['This is Kobe from LA Lakers', 'This is LBJ the king from LA Lakers', 'Michal Jordan from Bulls, the greatest ever']
+personList = [' NBA All-Defensive Second Team /  NBA scoring champion / NBA Slam Dunk Contest /NBA All-Rookie Second Team', 'NBA 75th Anniversary Team / All-NBA First Team / NBA All-Rookie Second Team/Fourth-team Parade All-American  ', 'NBA 75th Anniversary Team / All-NBA First Team /NBA All-Rookie Second Team /NBA All-Star Game MVP']
 
 
 def base(request):
