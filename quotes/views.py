@@ -8,7 +8,7 @@ quoteList = ['What can I say, Mamba Out!', 'I am the chosen one', 'you must firs
 imgList = [ '/static/kobe.jpg', '/static/lbj.jpg', '/static/mj.jpg']
 personList = [' NBA All-Defensive Second Team /  NBA scoring champion / NBA Slam Dunk Contest /NBA All-Rookie Second Team', 'NBA 75th Anniversary Team / All-NBA First Team / NBA All-Rookie Second Team/Fourth-team Parade All-American  ', 'NBA 75th Anniversary Team / All-NBA First Team /NBA All-Rookie Second Team /NBA All-Star Game MVP']
 
-num=None
+num=0
 
 def base(request):
     global num
