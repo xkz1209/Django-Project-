@@ -10,7 +10,7 @@ personList = ['This is Kobe from LA Lakers', 'This is LBJ the king from LA Laker
 
 
 def base(request):
-    global num
+    global num 
     num = random.randint(0,2)
     template_name = "quotes/base.html"
     # create a dictionary of context variables
@@ -22,7 +22,6 @@ def base(request):
 
 
 def quote(request):
-    global num
     template_name = "quotes/quote.html"
     # create a dictionary of context variables
     context = {
@@ -41,7 +40,6 @@ def show_all(request):
     return render(request, template_name, context)
 
 def about(request):
-    global num
     template_name = "quotes/about.html"
     # create a dictionary of context variables
     context = {
