@@ -19,8 +19,9 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
+urlpatterns = [                 #4 apps in the project
     path('admin/', admin.site.urls),
     path("hw/", include("hw.url")),
-    path("quotes/",include("quotes.urls"))
+    path("quotes/",include("quotes.urls")),
+    path("formdata/",include("formdata.urls")), #project level urls , urls in the formdata directory
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

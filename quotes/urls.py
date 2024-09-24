@@ -8,7 +8,7 @@ from . import views
 #create a list of URLs for this app
 urlpatterns = [
     path(r'',views.base, name="base"),        #our first , r for regular expressions matching
-    path('quote/', views.quote, name="quote"),
-    path('show_all/', views.show_all, name="show_all"),
-    path('about/', views.about, name="about")
+    path(r'quote/', views.quote, name="quote"),
+    path(r'show_all/', views.show_all, name="show_all"),
+    path(r'about/', views.about, name="about")
 ]
