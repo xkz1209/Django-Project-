@@ -24,4 +24,5 @@ urlpatterns = [                 #4 apps in the project
     path("hw/", include("hw.url")),
     path("quotes/",include("quotes.urls")),
     path("formdata/",include("formdata.urls")), #project level urls , urls in the formdata directory
+    path("restaurant/",include("restaurant.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,28 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{%static 'res.css'%}">
+</head>
+
+
+
+    <div id="d1">
+        <table>
+
+        <tr>  <td><h2>SICHUAN RESTAURANT  </h2>     </td>  </tr>
+        <tr>  <td> <h3>ADDRESS:  hongwuroad, Nanjing, China  210003 </h3>   </td>  </tr>
+        <tr>  <td> hours :  9am - 20pm   Monday - Saturday  </td>  </tr>
+        <tr>  <td><img src="{% static 'r1.jpg' %}" width="300px" height="300px" style="margin-bottom: 30px;">    </td>  </tr>
+        <tr>  <td> <img src="{% static 'r2.jpg' %}" width="300px" height="300px">   </td>  </tr>
+
+        </table>
+
+
+       
+
+    </div>
+
+
+
+{% endblock %}

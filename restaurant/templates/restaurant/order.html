@@ -1,0 +1,42 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+{% block content %}
+
+<h2> Place the order: </h2>
+
+
+<form action="{% url 'confirmation' %}" method="POST">
+    {% csrf_token %}
+    <h4>select menu:</h4>
+    <input type="checkbox" name="menu1" value="KongPaoChicken"> KongPaoChicken - $13.00<br>
+    <input type="checkbox" name="menu2" value="OrangeDuck"> OrangeDuck - $12.00<br>
+    <input type="checkbox" name="menu3" value="TofuVegetable"> TofuVegetable - $18.00<br>
+    <input type="checkbox" name="menu4" value="WongTong"> WongTong - $11.00<br>
+    <br>
+
+    <label>spicy level:</label><br>
+    <input type="checkbox" name="sp1" value="no spicy"> no spicy<br>
+    <input type="checkbox" name="sp2" value="mild"> mild<br>
+    <input type="checkbox" name="sp3" value="hot"> hot<br>
+
+    <h4>daily special:</h4>
+    <input type="checkbox" name="special" value="{{special}}"> {{special}} <br>
+
+    <h4>special instructions:</h4>
+    <textarea name="instructions" rows="5" cols="50" placeholder="Please put you speical insturctions here: "></textarea>
+
+    <h4>customer Information:</h4>
+    <label>Name:</label>    <input type="text" name="name"> <br>
+    <label>Phone:</label>    <input type="text" name="phone"> <br>
+    <label>Email:</label>    <input type="text" name="email"> <br>
+    <br>
+    <input type="submit" value="submitOrder">     
+</form>
+
+
+
+
+
+
+
+{% endblock %}

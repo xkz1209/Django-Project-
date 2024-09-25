@@ -1,0 +1,22 @@
+<!-- base.html -->
+{% load static %}
+<html>
+    <head>
+        <title>base</title>
+        <link rel="stylesheet" href="{% static 'res.css' %}">
+    </head>
+    <body>
+        <h1>   Welcome to SICHUAN RESTAURANT     </h1>  
+        
+        <nav> Our Information:  </nav>
+
+        <table>
+            <tr><td><a href="{% url 'base' %}"> base page  </a> </td>     </tr>
+            <tr><td><a href="{% url 'main' %}"> main page : Home </a>   </td>   </tr>
+            <tr><td><a href="{% url 'order' %}"> order page </a>   </td>   </tr>
+        </table>
+
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

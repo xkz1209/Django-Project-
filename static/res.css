@@ -1,0 +1,32 @@
+#d1,table{
+    margin: 0 auto;
+}
+
+body{
+    background-color:aqua;
+    text-align: center;
+}
+ul li {
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+    background-color: chartreuse;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+a:hover{
+    background-color: burlywood;
+}
+
+div{
+    
+
+}
+form{
+    width: 400px;
+    text-align: left;
+    margin: 0 auto;
+}

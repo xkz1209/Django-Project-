@@ -1,0 +1,37 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div>
+    <br> Dear Ms/Miss  <b>{{name}} </b> , we will contact you via <b>{{phone}}  </b> if the dish is out of stock<br> <br>
+    confirmation email has been sent to: <b> {{email}} </b>     <br><br><br>
+    The total is : <h3>${{sumOrder}} </h3> 
+
+    <ul>
+        {% for item in orderList%}
+        <li>{{item}}</li>
+    
+        {%endfor%}
+
+
+        
+    </ul>
+    <span style="background-color: red;">
+        {%for sp in spicy%}
+        {{sp}}
+        {%endfor%}
+    </span>
+    <br>
+    
+
+    This is your comments: {{instructions}}
+
+</div>
+
+
+
+
+
+{% endblock %}
