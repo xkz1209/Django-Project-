@@ -1,0 +1,31 @@
+<!-- formdata/templates/formdata/base.html -->
+{% load static %}
+<html>
+    <head>
+        <title>Hello, world!</title>
+        <link rel="stylesheet" href="{% static 'mini_fb.css' %}">
+    </head>
+    <body>
+        <div id="nav"> 
+            <nav > MINI Facebook:  </nav>
+
+            <table >
+                <tr><td><a href="">Nav Link for Future Use1 </a> </td>     </tr>
+                <tr><td><a href="">Nav Link for Future Use2 </a> </td>     </tr>
+                <tr><td><a href="">Nav Link for Future Use3 </a> </td>     </tr>
+            </table>
+
+        </div>
+       
+ 
+    {% block content %}
+    {% endblock %}
+    
+    <!-- <hr>
+    The current time is {{current_time}}. -->
+    </body>
+</html>
+
+
+        
+

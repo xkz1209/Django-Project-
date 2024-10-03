@@ -1,0 +1,27 @@
+<!-- templates/show_all_profile.html -->
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+<main class="grid-container">
+    <table>
+        <tr> <td>     
+            {% for a in profile %}
+            <article>
+                {% if a.image_url %}
+                <img src="{{a.image_url}}" alt="{{a.image_url}}">
+                {% endif %}
+                
+                <div>
+                <h2>{{a.city}}</h2>
+                <strong> {{a.firstName}} {{a.lastName}}</strong>
+                <p>
+                {{a.email}}
+                </p>
+                </div>
+            </article>
+            {% endfor %}  
+        </td>   </tr>
+    </table>
+
+</main>
+{% endblock %}
