@@ -1,0 +1,45 @@
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+
+<main class="grid-container">
+    <table>
+        <tr> <td>     
+            <article>
+                {% if single_profile.image_url %}
+                <img src="{{single_profile.image_url}}" alt="{{single_profile.image_url}}">
+                {% endif %}
+                
+                <div>
+                <h2>{{single_profile.city}}</h2>
+                <strong> {{single_profile.firstName}} {{single_profile.lastName}}</strong>
+                <p>
+                {{single_profile.email}}
+                </p>
+
+                <div>
+                    {% if single_profile.get_status_messages %}
+                        {% for s in single_profile.get_status_messages %}
+                        <div>
+                            {{s.profile}} and {{s.timestamp}}
+                            
+                            {{s.message}}
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div>
+                            no status message
+                        </div>
+                    {% endif %}
+                </div>
+
+                </div>
+            </article>
+        </td>   </tr>
+    </table>
+
+</main>
+
+
+
+{% endblock %}

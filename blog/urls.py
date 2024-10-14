@@ -9,5 +9,3 @@ urlpatterns = [
   #path(r'create_comment', views.CreateCommentView.as_view(), name='create_comment'),
   path(r'article/<int:pk>/create_comment', views.CreateCommentView.as_view(),name='create_comment')
 ]
-
-

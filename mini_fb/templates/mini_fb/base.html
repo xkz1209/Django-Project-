@@ -1,4 +1,4 @@
-<!-- formdata/templates/formdata/base.html -->
+
 {% load static %}
 <html>
     <head>
@@ -9,20 +9,18 @@
         <div id="nav"> 
             <nav > MINI Facebook:  </nav>
 
-            <table >
-                <tr><td><a href="">Nav Link for Future Use1 </a> </td>     </tr>
-                <tr><td><a href="">Nav Link for Future Use2 </a> </td>     </tr>
-                <tr><td><a href="">Nav Link for Future Use3 </a> </td>     </tr>
-            </table>
+            <nav>
+                <ul style="list-style-type: none">
+                    <li> <a href="{% url 'show_all_profiles' %}"> base page : Home </a> </li> 
+                </ul>
+            </nav>
 
         </div>
        
  
     {% block content %}
     {% endblock %}
-    
-    <!-- <hr>
-    The current time is {{current_time}}. -->
+
     </body>
 </html>
 

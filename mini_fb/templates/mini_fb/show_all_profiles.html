@@ -13,7 +13,7 @@
                 
                 <div>
                 <h2>{{a.city}}</h2>
-                <strong> {{a.firstName}} {{a.lastName}}</strong>
+                <strong> <a href="{% url 'show_profile' a.pk %}"> {{a.firstName}} {{a.lastName}}</a> </strong>
                 <p>
                 {{a.email}}
                 </p>
