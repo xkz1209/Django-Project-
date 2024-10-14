@@ -13,4 +13,18 @@ class Article(models.Model):
     image_url = models.URLField(blank=True) #new added
     
     def __str__(self):
-         return f"{self.title} by {self.author}"
+        return f"{self.title} by {self.author}"
+     
+    def get_comments(self):
+        '''retrieve all comments for this articles''' 
+        comments = Comment.objects.filter(article=self)
+        return comments
+     
+class Comment(models.Model):
+    article = models.ForeignKey("Article", on_delete=models.CASCADE)
+    author = models.TextField(blank=False)
+    text = models.TextField(blank=False)
+    published = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+         return f'{self.text}'
