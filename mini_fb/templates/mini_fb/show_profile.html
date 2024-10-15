@@ -1,45 +1,31 @@
 {% extends 'mini_fb/base.html' %}
 
 {% block content %}
-
-<main class="grid-container">
-    <table>
-        <tr> <td>     
-            <article>
-                {% if single_profile.image_url %}
-                <img src="{{single_profile.image_url}}" alt="{{single_profile.image_url}}">
-                {% endif %}
-                
-                <div>
-                <h2>{{single_profile.city}}</h2>
-                <strong> {{single_profile.firstName}} {{single_profile.lastName}}</strong>
-                <p>
-                {{single_profile.email}}
-                </p>
-
-                <div>
-                    {% if single_profile.get_status_messages %}
-                        {% for s in single_profile.get_status_messages %}
-                        <div>
-                            {{s.profile}} and {{s.timestamp}}
-                            
-                            {{s.message}}
-                        </div>
-                        {% endfor %}
-                    {% else %}
-                        <div>
-                            no status message
-                        </div>
-                    {% endif %}
-                </div>
-
-                </div>
-            </article>
-        </td>   </tr>
-    </table>
-
+<main class="profile-page">
+    <airticle class="profile-article">
+    {% if single_profile.image_url %}
+      <img src="{{ single_profile.image_url }}" alt="{{ single_profile.first_name }} {{ single_profile.last_name }}" class="profile-image">
+    {% endif %}
+    <div class="profile-details">
+    <h2>{{ single_profile.city }}</h2>
+    <strong>{{ single_profile.firstName }} {{ single_profile.lastName }}</strong>
+    <p>{{ single_profile.email }}</p>
+    <a href="{% url 'create_status' single_profile.pk %}" class="add-status-link">Add Status Message</a>
+    <div class="status-messages">
+     {% if single_profile.get_status_messages %}
+       {% for s in single_profile.get_status_messages %}
+          <div class="status-message">
+          <p><strong>{{ s.profile.firstName }} {{ s.profile.lastName }}</strong> on {{ s.timestamp|date:"F j, Y" }} at {{ s.timestamp|time:"H:i" }}</p>
+          <p>{{ s.message }}</p>
+          </div>
+       {% endfor %}
+     {% else %}
+       <div class="no-status-message">
+       <p>No status messages yet.</p>
+       </div>
+   {% endif %}
+  </div>
+ </div>
+</article>
 </main>
-
-
-
 {% endblock %}

@@ -6,12 +6,12 @@
     <table>
         <tr> <td>     
             {% for a in profile %}
-            <article>
+            <article class="profile-article">
                 {% if a.image_url %}
-                <img src="{{a.image_url}}" alt="{{a.image_url}}">
+		<img src="{{a.image_url}}" alt="{{a.firstName}} {{a.lastName}}" class="profile-image">
                 {% endif %}
                 
-                <div>
+                <div class="profile-details">
                 <h2>{{a.city}}</h2>
                 <strong> <a href="{% url 'show_profile' a.pk %}"> {{a.firstName}} {{a.lastName}}</a> </strong>
                 <p>

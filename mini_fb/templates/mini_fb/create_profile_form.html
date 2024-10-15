@@ -1,0 +1,42 @@
+<!-- blog/templates/blogs/create_comment_form.html -->
+{% extends 'mini_fb/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'other_fb.css' %}">
+
+<div class="container">
+<h2>Add a new profile </h2>
+    <!-- display the form (context variable) -->
+    <!-- {{form}} -->
+    <!-- display as paragraphs -->
+    <!-- {{form.as_p}} -->
+<form method="post" >
+    {% csrf_token %}
+   <div  class="form-group">
+     <label for="id_first_name">First Name:</label>
+     <input type="text" id="id_first_name" name="firstName" required>
+   </div>
+   <div  class="form-group">
+     <label for="id_last_name">Last Name:</label>
+     <input type="text" id="id_last_name" name="lastName" required>
+   </div>
+   <div  class="form-group">
+     <label for="id_city">City:</label>
+     <input type="text" id="id_city" name="city" required>
+   </div>
+   <div class="form-group">
+     <label for="id_email">E-mail:</label>
+     <input type="text" id="id_email" name="email" required>
+   </div>
+   <div class="form-group">
+      <label for="id_image">Image URL:</label>
+     <input type="text" id="id_image" name="image_url" required>
+   </div>
+   <button type="submit" class="btn btn-primary">Add Profile</button>
+</form>
+</div>
+
+{% endblock %}
