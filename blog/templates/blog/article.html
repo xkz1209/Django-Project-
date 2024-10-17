@@ -8,7 +8,7 @@
 <main class="grid-container">
     <article>
         {% if article.image_url %}
-        <img src="{{article.image_url}}" alt="{{article.image_url}}">
+        <img src="{{article.image_file.url}}" alt="{{article.image_file.url}}">
         {% endif %}
         
         <div>
