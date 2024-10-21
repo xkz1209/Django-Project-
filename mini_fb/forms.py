@@ -21,3 +21,20 @@ class CreateStatusMessageForm(forms.ModelForm):
         fields = ['message']
 
     message = forms.CharField(label="Message",required=True)
+
+
+class UpdateProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['firstName', 'lastName']  # first_name, and last_name fields
+
+    city = forms.CharField(label="City", required=True)
+    email = forms.CharField(label="Email", required=True)
+    image_url = forms.CharField(label="Image URL", required=True)
+
+
+class UpdateStatusMessageForm(forms.ModelForm):
+    class Meta:
+        model = StatusMessage
+        fields = ['message']
+    message = forms.CharField(label="Message",required=True)

@@ -1,0 +1,21 @@
+{% extends 'mini_fb/base.html' %}
+
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'other_fb.css' %}"> 
+<div class="container">
+
+<h2>Update Status Message</h2>
+   <form method="post" action="{% url 'update_status' status_message.pk %}">
+     {% csrf_token %}
+     {{ form.as_p }}
+     <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+    <form method="get" action="{% url 'show_profile' status_message.profile.pk %}">
+       <button type="submit" class="btn btn-secondary">Cancel</button>
+    </form>
+
+
+</div>
+
+																{% endblock %}

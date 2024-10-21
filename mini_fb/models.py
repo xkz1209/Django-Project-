@@ -12,7 +12,12 @@ class Profile(models.Model):
      def __str__(self):
         '''Return a string representation of this profile object.'''
         return f'{self.firstName} {self.lastName}'
-     
+     def getcity(self):
+         return f'{self.city}'
+     def getemail(self):
+         return f'{self.email}'
+     def getimageurl(self):
+         return f'{self.image_url}'
      def get_status_messages(self):
         '''return string representation of profile'''
         status = StatusMessage.objects.filter(profile=self)
@@ -29,3 +34,16 @@ class StatusMessage(models.Model):
       def __str__(self):
          return f'{self.profile} {self.timestamp} {self.message}' 
       
+      def get_images(self):
+         return self.images.all()
+      
+      
+class Image(models.Model):
+    image_file = models.ImageField(upload_to='images/') # an actual image
+    timestamp = models.DateTimeField(auto_now_add=True)
+    status = models.ForeignKey(StatusMessage,related_name='images', on_delete=models.CASCADE)
+    
+    def __str__(self):
+      return f'Image for {self.status}'  
+   
+    

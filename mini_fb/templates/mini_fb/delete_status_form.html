@@ -1,0 +1,21 @@
+{% extends 'mini_fb/base.html' %}
+
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'other_fb.css' %}"> 
+<div class="container">
+
+<h2>Confirm Delete</h2>
+    <p>Are you sure you want to delete the following status message?</p>
+    <p>{{ status_message.message }}</p>
+
+   <form method="post" action="{% url 'delete_status' status_message.pk %}">
+       {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+    </form>
+    <form method="get" action="{% url 'show_profile' status_message.profile.pk %}">
+        <button type="submit" class="btn btn-secondary">Cancel</button>
+     </form>
+</div>
+
+																{% endblock %}

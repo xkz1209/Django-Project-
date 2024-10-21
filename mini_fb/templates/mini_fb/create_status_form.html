@@ -5,15 +5,20 @@
 <link rel="stylesheet" href="{% static 'other_fb.css' %}"> 
 <div class="container">
     <h2>Create Status Message for <font color='red'>{{ profile }}</font></h2>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
        {% csrf_token %}
        <div class="form-group">
        <label for="id_message">Message:</label>
        {{ form.message }}
+       <label for="id_message">Files:</label>
+       <input type="file" name = "files" multiple />
      </div>
    <div class="form-group">
    <button type="submit">Add Message</button>
  </div>
     </form>
+
+
 </div>
+
 																{% endblock %}

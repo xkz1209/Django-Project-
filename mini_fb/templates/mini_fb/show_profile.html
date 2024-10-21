@@ -2,7 +2,7 @@
 
 {% block content %}
 <main class="profile-page">
-    <airticle class="profile-article">
+    <article class="profile-article">
     {% if single_profile.image_url %}
       <img src="{{ single_profile.image_url }}" alt="{{ single_profile.first_name }} {{ single_profile.last_name }}" class="profile-image">
     {% endif %}
@@ -10,13 +10,22 @@
     <h2>{{ single_profile.city }}</h2>
     <strong>{{ single_profile.firstName }} {{ single_profile.lastName }}</strong>
     <p>{{ single_profile.email }}</p>
+    <a href="{% url 'update_profile' single_profile.pk %}" class="add-status-link">Update Profile</a>
     <a href="{% url 'create_status' single_profile.pk %}" class="add-status-link">Add Status Message</a>
     <div class="status-messages">
      {% if single_profile.get_status_messages %}
        {% for s in single_profile.get_status_messages %}
+          <div class="status-images">
+	  {% for img in s.get_images %}
+	  <img style="width:100px" src="{{ img.image_file.url }}" alt="Image for {{ status }}" class="status-image" >
+        {% endfor %}
+          </div>
+
           <div class="status-message">
           <p><strong>{{ s.profile.firstName }} {{ s.profile.lastName }}</strong> on {{ s.timestamp|date:"F j, Y" }} at {{ s.timestamp|time:"H:i" }}</p>
-          <p>{{ s.message }}</p>
+	  <p>{{ s.message }}</p>
+	  <a href="{% url 'update_status' s.pk %}" class="btn btn-primary">Update</a>
+	  <a href="{% url 'delete_status' s.pk %}" class="btn btn-danger">Delete</a>
           </div>
        {% endfor %}
      {% else %}
@@ -24,6 +33,7 @@
        <p>No status messages yet.</p>
        </div>
    {% endif %}
+
   </div>
  </div>
 </article>
