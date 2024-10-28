@@ -1,7 +1,7 @@
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404,redirect,render
 from . models import *
-from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
+from django.views.generic import View,ListView,DetailView,CreateView,UpdateView,DeleteView
 from .forms import CreateProfileForm,CreateStatusMessageForm,UpdateProfileForm,UpdateStatusMessageForm
 from typing import Any
 from django.urls import reverse_lazy,reverse ## NEW
@@ -101,4 +101,31 @@ class UpdateStatusMessageView(UpdateView):
     def get_success_url(self):
         # Redirect to the profile page of the user who posted the status message
         return reverse_lazy('show_profile', kwargs={'pk': self.object.profile.pk})
-                                     
+
+class CreateFriendView(View):
+    def dispatch(self,request,*args,**kwargs):
+        pk = self.kwargs['pk']
+        other_pk = self.kwargs['other_pk']
+        profile1 = get_object_or_404(Profile,pk=pk)
+        other_profile = get_object_or_404(Profile,pk=other_pk)
+
+        profile1.add_friend(other_profile)
+
+        return redirect('show_profile',pk=pk)
+
+class FriendSuggestionsView(DetailView):
+    model = Profile
+    template_name = 'mini_fb/friend_suggestions.html'
+    context_object_name = 'profile'
+
+
+class ShowNewsFeedView(DetailView):
+    model = Profile
+    template_name = 'mini_fb/news_feed.html'
+    context_object_name = 'profile'
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = self.object
+        context['news_feed'] = profile.get_news_feed()
+        return context

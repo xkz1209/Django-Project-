@@ -8,10 +8,31 @@
     {% endif %}
     <div class="profile-details">
     <h2>{{ single_profile.city }}</h2>
+    <hr>
     <strong>{{ single_profile.firstName }} {{ single_profile.lastName }}</strong>
     <p>{{ single_profile.email }}</p>
     <a href="{% url 'update_profile' single_profile.pk %}" class="add-status-link">Update Profile</a>
     <a href="{% url 'create_status' single_profile.pk %}" class="add-status-link">Add Status Message</a>
+    <a href="{% url 'news_feed' single_profile.pk %}" class="add-status-link">View News Feed</a>
+
+    <hr>
+    <h3>Friends
+       [<a href="{% url 'friend_suggestions' single_profile.pk %}" class="btn btn-primary">See Friend Suggestions</a>]
+    </h3>
+       <ul style="display:flex;overflow-x:auto;list-style:none;padding:0;margin:0;gap:10px">
+       {% for friend in single_profile.get_friends %}
+          <li  style="display:flex;align-items:center">
+          <img style="width:20px;height:20px;border-radius:50%;margin-bottom:5px" src="{{friend.image_url}}">
+          <a href="{% url 'show_profile' friend.pk %}">
+           {{ friend}}
+          </a>
+          </li>
+         {% empty %}
+            <li>No friends yet.</li>
+       {% endfor %}
+       </ul>
+    <hr>
+    <h3>Status Message</h3>
     <div class="status-messages">
      {% if single_profile.get_status_messages %}
        {% for s in single_profile.get_status_messages %}
