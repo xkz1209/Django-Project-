@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voter List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        select, input[type="checkbox"] {
+            margin-left: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        li {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        li span {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        .pagination {
+            text-align: center;
+            margin: 20px auto;
+        }
+        .step-links a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .step-links a:hover {
+            background-color: #0056b3;
+        }
+        .step-links .current {
+            font-weight: bold;
+            color: #333;
+        }
+        .go-to-page {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .go-to-page input[type="number"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 50px;
+        }
+        .go-to-page button {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+	<h1>Voter List   (<a href="{% url 'graphs' %}">Graphs</a>)</h1>
+    <form method="get" action="{% url 'voters' %}">
+    <table style="width: 100%; margin: 20px auto; border-collapse: collapse;">
+        <tr>
+            <td style="text-align: right; padding: 10px;">
+                <label for="party_affiliation">Party Affiliation:</label>
+            </td>
+            <td style="padding: 10px;">
+                <select name="party_affiliation" id="party_affiliation">
+                    <option value="" {% if not request.GET.party_affiliation %}selected{% endif %}>Any</option>
+                    <option value="U" {% if request.GET.party_affiliation == 'U' %}selected{% endif %}>U</option>
+                    <option value="D" {% if request.GET.party_affiliation == 'D' %}selected{% endif %}>D</option>
+                    <option value="R" {% if request.GET.party_affiliation == 'R' %}selected{% endif %}>R</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; padding: 10px;">
+                <label for="min_dob">Min Date of Birth:</label>
+            </td>
+            <td style="padding: 10px;">
+                <select name="min_dob" id="min_dob">
+                    <option value="" {% if not request.GET.min_dob %}selected{% endif %}>Any</option>
+                    <option value="1975" {% if request.GET.min_dob == '1975' %}selected{% endif %}>1975</option>
+                    <option value="1980" {% if request.GET.min_dob == '1980' %}selected{% endif %}>1980</option>
+                    <option value="1985" {% if request.GET.min_dob == '1985' %}selected{% endif %}>1985</option>
+                    <option value="1990" {% if request.GET.min_dob == '1990' %}selected{% endif %}>1990</option>
+                    <option value="1995" {% if request.GET.min_dob == '1995' %}selected{% endif %}>1995</option>
+                    <option value="2000" {% if request.GET.min_dob == '2000' %}selected{% endif %}>2000</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; padding: 10px;">
+                <label for="max_dob">Max Date of Birth:</label>
+            </td>
+            <td style="padding: 10px;">
+                <select name="max_dob" id="max_dob">
+                    <option value="" {% if not request.GET.max_dob %}selected{% endif %}>Any</option>
+                    <option value="1975" {% if request.GET.max_dob == '1975' %}selected{% endif %}>1975</option>
+                    <option value="1980" {% if request.GET.max_dob == '1980' %}selected{% endif %}>1980</option>
+                    <option value="1985" {% if request.GET.max_dob == '1985' %}selected{% endif %}>1985</option>
+                    <option value="1990" {% if request.GET.max_dob == '1990' %}selected{% endif %}>1990</option>
+                    <option value="1995" {% if request.GET.max_dob == '1995' %}selected{% endif %}>1995</option>
+                    <option value="2000" {% if request.GET.max_dob == '2000' %}selected{% endif %}>2000</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; padding: 10px;">
+                <label for="voter_score">Voter Score:</label>
+            </td>
+            <td style="padding: 10px;">
+                <select name="voter_score" id="voter_score">
+                    <option value="" {% if not request.GET.voter_score %}selected{% endif %}>Any</option>
+                    <option value="0" {% if request.GET.voter_score == '0' %}selected{% endif %}>0</option>
+                    <option value="1" {% if request.GET.voter_score == '1' %}selected{% endif %}>1</option>
+                    <option value="2" {% if request.GET.voter_score == '2' %}selected{% endif %}>2</option>
+                    <option value="3" {% if request.GET.voter_score == '3' %}selected{% endif %}>3</option>
+                    <option value="4" {% if request.GET.voter_score == '4' %}selected{% endif %}>4</option>
+                    <option value="5" {% if request.GET.voter_score == '5' %}selected{% endif %}>5</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; padding: 10px;">
+                <label for="v20state">Voted in 2020 State Election:</label>
+            </td>
+            <td style="padding: 10px;">
+                <input type="checkbox" name="v20state" id="v20state" {% if request.GET.v20state == 'on' %}checked{% endif %}>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; padding: 10px;">
+                <label for="v21town">Voted in 2021 Town Election:</label>
+            </td>
+            <td style="padding: 10px;">
+                <input type="checkbox" name="v21town" id="v21town" {% if request.GET.v21town == 'on' %}checked{% endif %}>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; padding: 10px;">
+                <label for="v21primary">Voted in 2021 Primary:</label>
+            </td>
+            <td style="padding: 10px;">
+                <input type="checkbox" name="v21primary" id="v21primary" {% if request.GET.v21primary == 'on' %}checked{% endif %}>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; padding: 10px;">
+                <label for="v22general">Voted in 2022 General:</label>
+            </td>
+            <td style="padding: 10px;">
+                <input type="checkbox" name="v22general" id="v22general" {% if request.GET.v22general == 'on' %}checked{% endif %}>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; padding: 10px;">
+                <label for="v23town">Voted in 2023 Town Election:</label>
+            </td>
+            <td style="padding: 10px;">
+                <input type="checkbox" name="v23town" id="v23town" {% if request.GET.v23town == 'on' %}checked{% endif %}>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center; padding: 10px;">
+                <button type="submit">Filter</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+    <ul>
+        {% for voter in voters_page_obj %}
+            <li>
+                <span>{{ forloop.counter }}.</span>
+                <a href="{% url 'voter' voter.id %}">
+                    {{ voter.first_name }} {{ voter.last_name }} ({{ voter.street_number }} {{ voter.street_name }}, {{ voter.zip_code }})
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if voters_page_obj.has_previous %}
+                <a href="?{{ request.GET.urlencode|cut:'&page=' }}&page=1">&laquo; First</a>
+                <a href="?{{ request.GET.urlencode|cut:'&page=' }}&page={{ voters_page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ voters_page_obj.number }} of {{ voters_page_obj.paginator.num_pages }}.
+            </span>
+            {% if voters_page_obj.has_next %}
+                <a href="?{{ request.GET.urlencode|cut:'&page=' }}&page={{ voters_page_obj.next_page_number }}">Next</a>
+                <a href="?{{ request.GET.urlencode|cut:'&page=' }}&page={{ voters_page_obj.paginator.num_pages }}">Last &raquo;</a>
+            {% endif %}
+        </span>
+
+        <form method="get" action="{% url 'voters' %}" class="go-to-page">
+            <input type="number" name="page" min="1" max="{{ voters_page_obj.paginator.num_pages }}" value="{{ voters_page_obj.number }}">
+            {% for key, value in request.GET.items %}
+                {% if key != 'page' %}
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                {% endif %}
+            {% endfor %}
+            <button type="submit">Go</button>
+        </form>
+    </div>
+</body>
+</html>

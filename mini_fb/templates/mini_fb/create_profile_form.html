@@ -15,6 +15,20 @@
     <!-- {{form.as_p}} -->
 <form method="post" >
     {% csrf_token %}
+   <h3>User Information</h3>
+   <div  class="form-group">
+     <label for="id_username">UserName:</label>
+     <input type="text" id="id_username" name="username" required>
+   </div>
+   <div  class="form-group">
+     <label for="id_password1">Password:</label>
+     <input type="password" id="id_password1" name="password1" required>
+   </div>
+   <div  class="form-group">
+     <label for="id_password2">Password confirmation:</label>
+     <input type="password" id="id_password2" name="password2" required>
+   </div>
+   <h3>Profile Information</h3>
    <div  class="form-group">
      <label for="id_first_name">First Name:</label>
      <input type="text" id="id_first_name" name="firstName" required>
@@ -37,6 +51,18 @@
    </div>
    <button type="submit" class="btn btn-primary">Add Profile</button>
 </form>
+{% if form.errors %}
+  <div class="errorlist">
+    <h4>Form Errors:</h4>
+    {{ form.errors }}
+  </div>
+{% endif %}
+{% if user_form.errors %}
+  <div class="errorlist">
+     <h4>User Form Errors:</h4>
+  {{ user_form.errors }}
+   </div>
+{% endif %}
 </div>
 
 {% endblock %}

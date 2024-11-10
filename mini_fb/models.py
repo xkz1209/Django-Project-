@@ -1,9 +1,12 @@
 from django.db import models
 from django.urls import reverse
 from django.db.models import Q
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class Profile(models.Model):
+     user = models.ForeignKey(User, on_delete=models.CASCADE)
      firstName = models.TextField(blank=False)
      lastName = models.TextField(blank=False)
      city = models.TextField(blank=False)

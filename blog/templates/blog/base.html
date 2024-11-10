@@ -9,10 +9,33 @@
         base html
         <nav>
             <ul>
+                <!--- don't depend on authentication  -->
                 <li><a href="{% url 'show_all' %}">Show All</a></li>
                 <li><a href="{% url 'random' %}">Random</a></li>
+                <!---urls require auth  -->
+                {%if request.user.is_authenticated%}
                 <li><a href="{% url 'create_article' %}">Create Article</a></li>
+                
+                <!---log out must be a HTTP post, so we use the form to call the URL  -->
+                <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <input type="submit" value="Logout">
+
+                </form>
+ 
+                <!---  urls to login in -->
+                {%else%}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
             </ul>
+
+            <p>
+                {%if request.user.is_authenticated%}
+                Logged in : {{request.user}}
+                {%else%}
+                Not logged in.
+                {% endif %}
+            </p>
         </nav>
     {% block content %}
     {% endblock %}

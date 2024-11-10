@@ -1,10 +1,15 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User  ##NEW
 # Create your models here.
 #define data models for this application by creating class definition
 
 class Article(models.Model):
     '''Encapsulate the data for a blog Article is a model'''
+    #each article will be associated with a user
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    
     #data attribute:
     title = models.TextField(blank=False)
     author = models.TextField(blank=False)

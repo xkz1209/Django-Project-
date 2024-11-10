@@ -14,6 +14,10 @@ class CreateProfileForm(forms.ModelForm):
     email = forms.CharField(label="email", required=True)
     image_url = forms.CharField(label="image_url", required=True)
 
+    username = forms.CharField(label="username", required=True)
+    password1 = forms.CharField(label="password1", required=True)
+    password2 = forms.CharField(label="password2", required=True)
+
 
 class CreateStatusMessageForm(forms.ModelForm):
     class Meta:
@@ -26,7 +30,7 @@ class CreateStatusMessageForm(forms.ModelForm):
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['firstName', 'lastName']  # first_name, and last_name fields
+        exclude = ['firstName', 'lastName' , 'user']  # first_name, and last_name fields
 
     city = forms.CharField(label="City", required=True)
     email = forms.CharField(label="Email", required=True)
