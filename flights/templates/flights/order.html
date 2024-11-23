@@ -1,0 +1,41 @@
+{% extends 'flights/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+    <h2>My Orders</h2>
+
+    {% if tickets %}
+    <table class="table table-striped">
+     <thead>
+     <tr>
+        <th>Flight Number</th>
+        <th>Destination</th>
+        <th>Departure</th>
+	<th>Price</th>
+        <th>Departure Time</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+        <th>Order Date</th>
+     </tr>
+     </thead>
+     <tbody>
+     {% for ticket in tickets %}
+       <tr>
+        <td>{{ ticket.flight.flight_num }}</td>
+        <td>{{ ticket.flight.destination }}</td>
+        <td>{{ ticket.flight.departure }}</td>
+	<td>{{ ticket.flight.price }}</td>
+        <td>{{ ticket.flight.departure_time }}</td>
+        <td>{{ ticket.quantity }}</td>
+        <td>{{ ticket.total_price }}</td>
+        <td>{{ ticket.order_placed_date }}</td>
+       </tr>
+     {% endfor %}
+    </tbody>
+    </table>
+    {% else %}
+    <p>No orders found.</p>
+    {% endif %}
+
+
+{%  endblock  %}

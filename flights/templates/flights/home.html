@@ -1,0 +1,48 @@
+{% extends 'flights/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+    <h2>Flights</h2>
+    <form method="get" action="{% url 'search_flights' %}">
+    <div class="mb-3">
+       <label for="destination" class="form-label">Destination:</label>
+       <input type="text" id="destination" name="destination" class="form-control">
+    </div>
+    <div class="mb-3">
+       <label for="flight_num" class="form-label">Flight Number:</label>
+       <input type="text" id="flight_num" name="flight_num" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+   </form>
+    <table class="table table-striped">
+     <thead>
+       <tr>
+         <th>Flight Number</th>
+         <th>Destination</th>
+         <th>Departure</th>
+         <th>Price</th>
+         <th>Departure Time</th>
+         <th>Stops</th>
+         <th>Type</th>
+	 <th>Remaining</th>
+         <th>Action</th>
+       </tr>
+      </thead>
+      <tbody>
+         {% for flight in flights %}
+         <tr>
+            <td>{{ flight.flight_num }}</td>
+            <td>{{ flight.destination }}</td>
+            <td>{{ flight.departure }}</td>
+            <td>{{ flight.price }}</td>
+            <td>{{ flight.departure_time }}</td>
+            <td>{{ flight.num_stops }}</td>
+            <td>{{ flight.flight_type }}</td>
+            <td>{{ flight.total_num }}</td>
+            <td><a href="{% url 'add_to_cart' flight.id %}" class="btn btn-primary">Add to Cart</a></td>
+         </tr>
+         {% endfor %}
+     </tbody>
+     </table>
+
+{%  endblock  %}

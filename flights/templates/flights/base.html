@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>{% block title %}Flights{% endblock %}</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">Flights App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+         <li class="nav-item">
+           <a class="nav-link" href="{% url 'home' %}">Home</a>
+         </li>
+         {% if user.is_authenticated %}
+         <li class="nav-item">
+           <a class="nav-link" href="{% url 'cart' %}">Cart</a>
+         </li>
+	 <li class="nav-item"><a class="nav-link" href="{% url 'orders' %}">Orders</a>
+         <li class="nav-item">
+           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+         </li>
+        {% else %}
+         <li class="nav-item">
+           <a class="nav-link" href="{% url 'register' %}">Register</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="{% url 'login' %}">Login</a>
+       </li>
+         {% endif %}
+       </ul>
+       {% if user.is_authenticated %}
+        <div class="d-flex align-items-center">
+      <p class="mb-0 me-2">Welcome, {{ user.client.first_name }} {{ user.client.last_name }}!</p>
+      <p class="mb-0 me-2">Email: {{ user.client.email }}</p>
+      <p class="mb-0">Phone: {{ user.client.phone_number }}</p>
+        </div>
+       {% endif %}
+ </div>
+    </div>
+ </nav>
+
+ <main class="container mt-4">
+	 {% if messages %}
+         <div class="messages">
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+         </div>
+															         {% endif %}
+
+
+    {% block content %}
+    {% endblock %}
+</main>
+
+    <footer class="bg-light text-center py-3">
+     <p>&copy; 2024 Flights App</p>
+   </footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
