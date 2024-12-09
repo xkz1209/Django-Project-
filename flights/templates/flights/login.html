@@ -1,17 +1,26 @@
 {% extends 'flights/base.html' %}
 {% block title %}Login{% endblock %}
 {% block content %}
+<!-- Heading for the Login section -->
 <h2>Login</h2>
+
+<!-- Form to allow users to log in -->
 <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
+    
+    <!-- Username input field -->
     <div class="mb-3">
-    <label for="username" class="form-label">Username:</label>
-     <input type="text" id="username" name="username" class="form-control">
+        <label for="username" class="form-label">Username:</label>
+        <input type="text" id="username" name="username" class="form-control">
     </div>
+    
+    <!-- Password input field -->
     <div class="mb-3">
-     <label for="password" class="form-label">Password:</label>
-     <input type="password" id="password" name="password" class="form-control">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" id="password" name="password" class="form-control">
     </div>
+    
+    <!-- Submit button to submit the login form -->
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
 {% endblock %}

@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from .models import Flight, Client, Ticket,CartItem
+from .models import Flight, Client, Ticket,CartItem,Baggage
 
 @admin.register(Flight)
 class FlightAdmin(admin.ModelAdmin):
@@ -18,4 +18,6 @@ class TicketAdmin(admin.ModelAdmin):
 class TicketAdmin(admin.ModelAdmin):
     list_display = ('flight', 'client', 'quantity','total_price')
 
-
+@admin.register(Baggage)
+class BaggageAdmin(admin.ModelAdmin):
+        list_display = ('ticket', 'onboard', 'passenger_count','is_member','has_delta_card','is_checkout')

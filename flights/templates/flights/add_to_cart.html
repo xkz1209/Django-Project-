@@ -1,13 +1,20 @@
 {% extends 'flights/base.html' %}
 {% block title %}Add to Cart{% endblock %}
 {% block content %}
+<!-- Heading for the Add to Cart section -->
 <h2>Add to Cart</h2>
+
+<!-- Form to add a flight to the cart -->
 <form method="post" action="{% url 'add_to_cart' flight.id %}">
     {% csrf_token %}
+    
+    <!-- Quantity input field for selecting how many tickets to add -->
     <div class="mb-3">
-       <label for="quantity" class="form-label">Quantity:</label>
-       <input type="number" id="quantity" name="quantity" class="form-control" min="1" value="1">
+        <label for="quantity" class="form-label">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" class="form-control" min="1" value="1">
     </div>
+    
+    <!-- Submit button to add the selected quantity of flights to the cart -->
     <button type="submit" class="btn btn-primary">Add to Cart</button>
 </form>
 {% endblock %}

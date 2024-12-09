@@ -1,0 +1,67 @@
+<!-- templates/flights/baggage.html -->
+
+{% extends 'flights/base.html' %}
+{% block title %}Baggage Information{% endblock %}
+
+{% block content %}
+<!-- Heading for the flight information section -->
+<h1>Flight Information</h1>
+<p><strong>Start Location:</strong> {{ ticket.flight.departure }}</p>
+<p><strong>Destination:</strong> {{ ticket.flight.destination }}</p>
+<p><strong>Purchase Time:</strong> {{ ticket.order_placed_date }}</p>
+<p><strong>Departure Time:</strong> {{ ticket.flight.departure_time }}</p>
+
+<!-- Heading for the passenger information section -->
+<h2>Passenger Information</h2>
+<form method="post">
+    {% csrf_token %}
+    
+    <!-- Onboard Experience selection -->
+    <div class="mb-3">
+        <label for="{{ form.onboard.id_for_label }}" class="form-label">Onboard Experience:</label>
+        {% if is_checkout %}
+            <label>{{ baggage.onboard }}</label>
+        {% else %}
+            {{ form.onboard }}
+        {% endif %}
+    </div>
+    
+    <!-- Passenger count input -->
+    <div class="mb-3">
+        <label for="{{ form.passenger_count.id_for_label }}" class="form-label">{{ form.passenger_count.label }}:</label>
+        {% if is_checkout %}
+            <label>{{ baggage.passenger_count }}</label>
+        {% else %}
+            {{ form.passenger_count }}
+        {% endif %}
+    </div>
+    
+    <!-- Medallion Status checkbox -->
+    <div class="mb-3 form-check">
+        {% if is_checkout %}
+            <input type="checkbox" class="form-check-input" id="{{ form.is_member.id_for_label }}" disabled {% if baggage.is_member %}checked{% endif %}>
+        {% else %}
+            {{ form.is_member }}
+        {% endif %}
+        <label for="{{ form.is_member.id_for_label }}" class="form-check-label">Medallion Status When Traveling (Optional)</label>
+    </div>
+    
+    <!-- Delta SkyMiles American Express Card Member checkbox -->
+    <div class="mb-3 form-check">
+        {% if is_checkout %}
+            <input type="checkbox" class="form-check-input" id="{{ form.has_delta_card.id_for_label }}" disabled {% if baggage.has_delta_card %}checked{% endif %}>
+        {% else %}
+            {{ form.has_delta_card }}
+        {% endif %}
+        <label for="{{ form.has_delta_card.id_for_label }}" class="form-check-label">Delta SkyMiles American Express Card Member (Optional)</label>
+    </div>
+    
+    <!-- Submit button to proceed to checkout, only shown when not in checkout mode -->
+    {% if not is_checkout %}
+        <button type="submit" class="btn btn-primary">Check Out</button>
+    {% endif %}
+    
+    <!-- Button to return to orders page -->
+    <a href="{% url 'orders' %}" class="btn btn-primary">Return to Orders</a>
+</form>
+{% endblock %}
