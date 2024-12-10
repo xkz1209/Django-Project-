@@ -1,3 +1,4 @@
+#Kaizhe Xu(kax225@bu.edu) Description: This is the model file for flight,client,ticket and cart
 from django.db import models
 from django.contrib.auth.models import User
 import random

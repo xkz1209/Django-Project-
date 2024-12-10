@@ -1,3 +1,5 @@
+#Kaizhe Xu(kax225@bu.edu) Description: This is the view file for baggage,checkin, Loginin, Loginout, cartView and CartRemove
+#Cart part has some specific functions whose corresponding views are AddtoCartView, CartView, RemoveFromCartView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, DeleteView, FormView

@@ -1,4 +1,4 @@
-
+#Kaizhe Xu(kax225@bu.edu) Description: This is the admin file for flight,client,ticket,and baggage
 from django.contrib import admin
 from .models import Flight, Client, Ticket,CartItem,Baggage
 
